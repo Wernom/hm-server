@@ -2,10 +2,10 @@ import { Response, NextFunction } from "express"
 import roomService from "./room.service"
 class RoomController {
 
-  async getRoom(req: any, res: Response, next: NextFunction) {
+  async getAllRoom(req: any, res: Response, next: NextFunction) {
     try {
 
-      const rooms = await roomService.find(req.body)
+      const rooms = await roomService.find()
 
       return res.status(200).json({
         success: true,

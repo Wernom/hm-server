@@ -5,8 +5,20 @@ import { IUser } from "../User/user.interface"
 
 class RoomService {
 
-  async find(filter: FilterQuery<IUser>) {
-    return Room.find(filter || {})
+  async find() {
+    return Room.aggregate([
+      {
+        '$group': {
+          '_id': '$name', 
+          'record': {
+            '$push': '$$ROOT'
+          }, 
+          'count': {
+            '$sum': 1
+          }
+        }
+      }
+    ])
   }
 
   async create(data: IRoom) {

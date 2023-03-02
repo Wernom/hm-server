@@ -9,7 +9,7 @@ export class RoomRoutes extends RouteConfig {
   }
 
   configureRoutes() {
-    this.app.route(`/room`).get([JWT.authenticateJWT, RoomController.getRoom])
+    this.app.route(`/room/all`).get([JWT.authenticateJWT, RoomController.getAllRoom])
     this.app.route(`/room`).post([JWT.authenticateJWT, RoomController.createRoom])
 
     return this.app
