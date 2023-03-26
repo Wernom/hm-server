@@ -1,12 +1,9 @@
-import User from "../User/user.model"
-import { IUser } from "../User/user.interface"
+import User from "../User/user.model";
 
 class UserService {
-  async findUserByEmail(email: string) {
-    return User.findOne({
-      email: email,
-    }).exec()
+  async findUser() {
+    return User.findOne({}).exec();
   }
 }
 
-export default new UserService()
+export default new UserService();

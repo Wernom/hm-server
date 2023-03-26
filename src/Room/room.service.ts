@@ -1,7 +1,5 @@
 import Room from "../Room/room.model"
 import { IRoom } from "../Room/room.interface"
-import { FilterQuery } from "mongoose"
-import { IUser } from "../User/user.interface"
 
 class RoomService {
 

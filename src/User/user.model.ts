@@ -1,16 +1,16 @@
-import MongooseService from "../Common/services/mongoose.service"
-import { Schema, Model, Document } from "mongoose"
-import { IUser } from "./user.interface"
-import { Password } from "../Common/services/password"
+import MongooseService from "../Common/services/mongoose.service";
+import { Schema, Model, Document } from "mongoose";
+import { IUser } from "./user.interface";
+import { Password } from "../Common/services/password";
 
 export interface UserDocument extends Document {
-  email: string
-  password: string
-  username: string
+  email: string;
+  password: string;
+  username: string;
 }
 
 interface UserModel extends Model<UserDocument> {
-  build(attrs: IUser): UserDocument
+  build(attrs: IUser): UserDocument;
 }
 
 const UserSchema: Schema = new Schema(
@@ -21,31 +21,31 @@ const UserSchema: Schema = new Schema(
   },
   {
     toObject: {
-      transform: function (doc, ret) { },
+      transform: function (doc, ret) {},
     },
     toJSON: {
       transform: function (doc, ret) {
-        delete ret.password
+        delete ret.password;
       },
     },
   }
-)
+);
 
 UserSchema.pre("save", async function (done) {
   if (this.isModified("password")) {
-    const hashed = await Password.toHash(this.get("password"))
-    this.set("password", hashed)
+    const hashed = await Password.toHash(this.get("password"));
+    this.set("password", hashed);
   }
-  done()
-})
+  done();
+});
 
 UserSchema.statics.build = (attrs: IUser) => {
-  return new User(attrs)
-}
+  return new User(attrs);
+};
 
 const User = MongooseService.getInstance().model<UserDocument, UserModel>(
   "User",
   UserSchema
-)
+);
 
-export default User
+export default User;

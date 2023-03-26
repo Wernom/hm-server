@@ -3,9 +3,8 @@ import UserService from "./user.service"
 class UserController {
 
   async getUser(req: any, res: Response, next: NextFunction) {
-    const email = req.user.email
     try {
-      const user = await UserService.findUserByEmail(email)
+      const user = await UserService.findUser()
 
       return res.status(200).json({
         success: true,
