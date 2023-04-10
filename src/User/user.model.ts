@@ -4,7 +4,6 @@ import { IUser } from "./user.interface";
 import { Password } from "../Common/services/password";
 
 export interface UserDocument extends Document {
-  email: string;
   password: string;
   username: string;
 }
@@ -15,7 +14,6 @@ interface UserModel extends Model<UserDocument> {
 
 const UserSchema: Schema = new Schema(
   {
-    email: { type: String, required: true },
     password: { type: String, required: true },
     username: { type: String, required: true },
   },

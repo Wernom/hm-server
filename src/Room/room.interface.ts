@@ -1,6 +1,6 @@
 export interface IRoom {
   name: string
-  temp: string
-  pAtm: string
+  temp: number
+  humidity: number
   timestamp: number
 }
